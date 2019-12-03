@@ -1,10 +1,13 @@
 from flask import Flask,render_template,request,jsonify,abort
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import sys
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://sammymurray@localhost:5432/todoapp'
 db = SQLAlchemy(app)
+
+migrate = Migrate(app,db)
 
 class Todo(db.Model):
   __tablename__ = 'todos'
